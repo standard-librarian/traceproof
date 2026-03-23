@@ -1,0 +1,42 @@
+{
+  "prompt": "Summarize the incident and include the billing account.",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a support triage assistant."
+    },
+    {
+      "role": "user",
+      "content": "Why did invoice INV-204 fail?"
+    }
+  ],
+  "model": {
+    "provider": "openai",
+    "name": "gpt-4.1-mini",
+    "temperature": 0.2
+  },
+  "tool_calls": [
+    {
+      "name": "lookup_invoice",
+      "arguments": {
+        "invoice_id": "INV-204"
+      },
+      "result": {
+        "status": "missing_account",
+        "account_id": "acct_42"
+      }
+    }
+  ],
+  "retrieval": [
+    {
+      "id": "kb-19",
+      "snippet": "Invoice failures should include account ownership context."
+    }
+  ],
+  "output": {
+    "text": "Invoice INV-204 failed because account acct_42 is archived."
+  },
+  "metadata": {
+    "request_id": "req-123"
+  }
+}
